@@ -18,15 +18,20 @@ module.exports = function (content) {
      } catch (e) {
        console.error('JSDev loader error: parsing query', e);
      }
+  } else {
+    console.log('no query given, no tags will be parsed')
+    
   }
   
   try {
 
-    result = jsdev(content, config.tags, comments);
+    //NB: don't give comments argument as it will throw off sourcemap line numbers by 1
+    result = jsdev(content, config.tags);
   
     return result;
 
   } catch(e) {
+
     console.error('JSDev error:', e);
     
     return content;
