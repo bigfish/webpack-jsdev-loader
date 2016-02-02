@@ -33,6 +33,7 @@ module.exports = function (content) {
   } catch(e) {
 
     console.error('JSDev error:', e);
+    throw e;
     
     return content;
   }

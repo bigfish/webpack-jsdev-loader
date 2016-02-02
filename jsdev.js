@@ -338,14 +338,15 @@ function jsdev(source, tags, comments) {
             condition();
             emit(' ');
         }
-        emit('{');
+        //emit('{');
         if (methods[tag_nr]) {
             emit(methods[tag_nr] + '(');
             stuff();
-            emit(");}");
+            //emit(");}");
+            emit(");");
         } else {
             stuff();
-            emit('}');
+            //emit('}');
         }
     }
 
@@ -367,10 +368,11 @@ function jsdev(source, tags, comments) {
 // The most complicated case is the slash. It can mean division or a regexp
 // literal or a line comment or a block comment. A block comment can also be
 // a pattern to be expanded.
+// note: it can also be end of JSX tag
 
             } else if (c === '/') {
 
-//  A slash slash comment skips to the end of the file.
+//  A slash slash comment skips to the end of the line.
 
                 if (peek() === '/') {
                     emit('/');
@@ -380,6 +382,12 @@ function jsdev(source, tags, comments) {
                             break;
                         }
                     }
+                    c = get(false);
+
+//JXS closing tag
+                //
+                } else if (peek() === '>') {
+                    emit('/');
                     c = get(false);
 
 //  The first component of a slash star comment might be the tag.
