@@ -384,7 +384,7 @@ function jsdev(source, tags, comments) {
                     }
                     c = get(false);
 
-//JXS closing tag
+//JSX closing tag
                 //
                 } else if (peek() === '>') {
                     emit('/');

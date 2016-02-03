@@ -2,7 +2,6 @@
 var jsdev = require('./jsdev.js');
 
 var tags = [];
-var comments = "JSDev pre-processed";
 
 module.exports = function (content) {
   this.cacheable();
